@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dgit.mapper.projectdayMapper">
+	<resultMap type="Projectday" id="ProjectdayResult">
+		<id property="no" column="pro_id"/>
+		<result property="name" column="pro_name"/>
+		<result property="content" column="pro_content"/>
+		<result property="getdate" column="getdate"/>
+		<result property="enddate" column="enddate"/>
+		<result property="order" column="pro_order"/>
+	</resultMap>
+	<insert id="insert" parameterType="Projectday">
+		INSERT INTO projectday.project(pro_name, pro_content, getdate, enddate, pro_order) VALUES(#{name},#{content},#{getdate},#{enddate},#{order})
+	</insert>
+	<select id="listAll" resultType="Projectday" resultMap="ProjectdayResult">
+		select * from project; 
+	</select>
+	<update id="update" parameterType="Projectday">
+		UPDATE projectday.project SET pro_name=#{name}, pro_content=#{content}, getdate=#{getdate}, enddate=#{enddate}, pro_order=#{order} WHERE pro_id=#{no}
+	</update>
+	<delete id="delete">
+		DELETE FROM  projectday.project WHERE pro_id=#{no}
+	</delete>
+	<select id="read" resultType="Projectday" resultMap="ProjectdayResult">
+		select * from project where pro_id=#{no}
+	</select>
+</mapper>
