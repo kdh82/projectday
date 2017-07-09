@@ -31,15 +31,9 @@ margin-left: 20px;
 	<li><a href="listAll">[Home]</a></li>
 </ul>
 </div>
-<%
-	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-	Projectday pd = new Projectday();
-	sdf.format(pd.getGetdate());
-	sdf.format(pd.getEnddate());
-%>
 <div id="maindiv">
 	<form action="modify?no=${pd.no }" method="post" name="f1">
-		<!-- <input type="hidden" name="no"> -->
+		<input type="hidden" name="no">
 		<p>
 			<label>프로젝트 이름: </label>
 			<input type="text" name="name" value="${pd.name }">
@@ -52,41 +46,21 @@ margin-left: 20px;
 		<br>
 		<p>
 			<label>시작날짜: </label>
-			<input type="date" name="getdate" value="${pd.getdate} ">
+			<input type="date" name="getdate" value=<fmt:formatDate value="${pd.getdate}" pattern="yyyy-MM-dd"/>>
 		</p>
 		<br>
 		<p>
 			<label>마감날짜: </label>
-			<input type="date" name="enddate" value="${pd.enddate }">
+			<input type="date" name="enddate" value=<fmt:formatDate value="${pd.enddate}" pattern="yyyy-MM-dd"/>>
 		</p>
 		<br>
 		<p>
 			<label>상태: </label>
-			<select name="order">
-			<c:if test="${pd.order == '준비' }">
-			<option selected="selected">준비</option>
-			<option>진행중</option>
-			<option>종료</option>
-			<option>보류</option>
-			</c:if>
-			<c:if test="${pd.order == '진행중' }">
-			<option>준비</option>
-			<option selected="selected">진행중</option>
-			<option>종료</option>
-			<option>보류</option>
-			</c:if>
-			<c:if test="${pd.order == '종료' }">
-			<option>준비</option>
-			<option>진행중</option>
-			<option selected="selected">종료</option>
-			<option>보류</option>
-			</c:if>
-			<c:if test="${pd.order == '보류' }">
-			<option>준비</option>
-			<option>진행중</option>
-			<option>종료</option>
-			<option selected="selected">보류</option>
-			</c:if>
+			<select name="order">		
+			<option <c:if test="${pd.order == '준비' }"> selected="selected"</c:if>>준비</option>				
+			<option <c:if test="${pd.order == '진행중' }"> selected="selected"</c:if>>진행중</option>			
+			<option <c:if test="${pd.order == '종료' }"> selected="selected"</c:if>>종료</option>						
+			<option <c:if test="${pd.order == '보류' }"> selected="selected"</c:if>>보류</option>		
 			</select>
 		</p>
 		<br>

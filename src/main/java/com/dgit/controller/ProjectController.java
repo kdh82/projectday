@@ -1,5 +1,6 @@
 package com.dgit.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -48,9 +49,10 @@ public class ProjectController {
 	
 	@RequestMapping(value="read", method=RequestMethod.GET)
 	public String readPage(int no, Model model) throws Exception{
-		Projectday pd = service.read(no);
+		Projectday projectday = service.read(no);
+		model.addAttribute("projectday", projectday);
 		
-		model.addAttribute("projectday", pd);
+
 		return "project/detailForm";
 	}
 	
@@ -58,13 +60,16 @@ public class ProjectController {
 	public String modifyGet(int no, Model model) throws Exception{
 		Projectday pd = service.read(no);
 		model.addAttribute("pd", pd);
+		logger.info("-------------------------------------------------"+pd.getGetdate());
+		logger.info("-------------------------------------------------"+pd.getEnddate());
+		
 		return "project/modifyForm";
 	}
 	
 	@RequestMapping(value="modify", method=RequestMethod.POST)
 	public String modifyPost(@ModelAttribute("pd") Projectday pd, RedirectAttributes rttr) throws Exception{
 		service.modify(pd);
-		rttr.addAttribute(pd);
+		rttr.addAttribute("no", pd.getNo());
 		return "redirect:read";
 	}
 	

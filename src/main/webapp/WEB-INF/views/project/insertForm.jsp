@@ -38,13 +38,20 @@ margin-left: 20px;
 	margin-left: 100px;
 }
 </style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$("#homea").click(function(){
+		location.href="listAll";
+	});
+})	;
+</script>
 </head>
 <body>
 <jsp:include page="include/header.jsp"/>
 <div id="topdiv">
 <ul id="topdivul">
-	<li><a href="listAll">[Home]</a></li>
-		<li><a href="listAll">[돌아가기]</a></li>
+	<li><a href="#" id="homea">[Home]</a></li>
 </ul>
 </div>
 <div id="maindiv">

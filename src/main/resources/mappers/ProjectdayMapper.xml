@@ -17,10 +17,10 @@
 	<select id="listAll" resultType="Projectday" resultMap="ProjectdayResult">
 		select * from project; 
 	</select>
-	<update id="update" parameterType="Projectday">
+	<update id="update" parameterType="Projectday" >
 		UPDATE projectday.project SET pro_name=#{name}, pro_content=#{content}, getdate=#{getdate}, enddate=#{enddate}, pro_order=#{order} WHERE pro_id=#{no}
 	</update>
-	<delete id="delete">
+	<delete id="delete" parameterType="Projectday">
 		DELETE FROM  projectday.project WHERE pro_id=#{no}
 	</delete>
 	<select id="read" resultType="Projectday" resultMap="ProjectdayResult">

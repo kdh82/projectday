@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>     
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,8 +28,8 @@
 		<c:forEach var="item" items="${list }">
 		<tr>
 			<td	id="listtd"><a href="read?no=${item.no }" title="프로젝트 상세 보기">${item.name }</a></td>
-			<td><fmt:formatDate value="${item.getdate }" pattern="yyyy-MM-dd"></fmt:formatDate></td>
-			<td><fmt:formatDate value="${item.enddate }" pattern="yyyy-MM-dd"></fmt:formatDate></td>
+			<td><fmt:formatDate value="${item.getdate }" pattern="yyyy-MM-dd"/></td>
+			<td><fmt:formatDate  value="${item.enddate }" pattern="yyyy-MM-dd"/></td>
 			<td>${item.order }</td>
 		</tr>
 		</c:forEach>

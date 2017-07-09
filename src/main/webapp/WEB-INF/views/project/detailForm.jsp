@@ -13,9 +13,9 @@ $(function(){
 	$("#del").click(function(e){
 		e.preventDefault();
 		var result = confirm("정말 삭제하시겠습니까?");
-		var number = ${proList.no};
+		var number = ${projectday.no};
 		if(result == true){
-			location.href = "delete.do?no=" + number;	
+			location.href = "delete?no=" + number;	
 		}
 	});
 });
