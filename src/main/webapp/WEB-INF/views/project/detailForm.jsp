@@ -9,16 +9,24 @@
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
-$(function(){
+/* $(function(){
 	$("#del").click(function(e){
 		e.preventDefault();
 		var result = confirm("정말 삭제하시겠습니까?");
 		var number = ${projectday.no};
 		if(result == true){
-			location.href = "delete?no=" + number;	
+			$.ajax({
+				url:"listAll/",
+				type:"delete",
+				datatype:"json",
+				success:function(data){
+
+				}
+			})
+			
 		}
 	});
-});
+}); */
 </script>
 <style>
 tr td:FIRST-CHILD {
@@ -34,6 +42,26 @@ tr td:LAST-CHILD {
 }
 #detailformul li{
 	display: inline;
+}
+#buttonthey{
+	float: right;
+	margin-right: 20px;
+}
+button{
+	float: left;
+	margin-right: 5px;
+	color: white;
+	width: 70px;
+	height: 20px;
+}
+button:FIRST-CHILD {
+		background-color: blue;
+}
+button + button{
+	background-color: red;
+}
+button:LAST-CHILD {
+	background-color: grey;
 }
 </style>
 </head>
@@ -67,11 +95,38 @@ tr td:LAST-CHILD {
 			<td>${projectday.order }</td>
 		</tr>
 	</table>
-	<ul id="detailformul">
+	<form action="" method="post" id="f1">
+		<input type="hidden" name="no" value="${projectday.no }">
+	</form>
+	<div id="buttonthey">
+	<button id="mod">modify</button><button id="del">delete</button><button id="back">back</button>
+	</div>
+	<%-- <ul id="detailformul">
 	<li><a href="modify?no=${projectday.no }">[수정]</a></li>
 	<li><a href="delete?no=${projectday.no }" id="del">[삭제]</a></li>
 	<li><a href="listAll">[돌아가기]</a></li>
-	</ul>
+	</ul> --%>
+	<script>
+		$(function(){
+			$("#mod").click(function(e) {
+				e.preventDefault();
+				$("#f1").attr("action","modify");
+				$("#f1").attr("method","get");
+				$("#f1").submit();
+			})
+	$("#del").click(function(e){
+		e.preventDefault();
+		var result = confirm("정말 삭제하시겠습니까?");
+		if(result == true){
+				$("#f1").attr("action", "delete");
+				$("#f1").submit();
+				}
+		})
+		$("#back").click(function(){
+			location.href="listAll";
+		})
+		})
+	</script>
 </div>
 <jsp:include page="include/footer.jsp"/>	
 </body>

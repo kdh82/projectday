@@ -32,8 +32,8 @@ margin-left: 20px;
 </ul>
 </div>
 <div id="maindiv">
-	<form action="modify?no=${pd.no }" method="post" name="f1">
-		<input type="hidden" name="no">
+	<form <%-- action="modify?no=${pd.no }" --%> method="post" name="f1" role="form">
+		<input type="hidden" name="no" value="${pd.no }">
 		<p>
 			<label>프로젝트 이름: </label>
 			<input type="text" name="name" value="${pd.name }">
